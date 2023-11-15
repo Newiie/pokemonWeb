@@ -1,0 +1,12 @@
+.gamescore {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5rem;
+    gap : 1rem;
+}
+
+.gs-item {
+    display: flex;
+    gap: 1rem;
+}

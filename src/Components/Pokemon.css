@@ -1,0 +1,55 @@
+.pokemon-card {
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    height: 10rem;
+    padding: 1rem 1rem 1rem 2rem;
+    position: relative;
+    transition: transform 1500ms;
+    transform-style: preserve-3d;
+    list-style-type: none;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+.pokemon-card img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+} 
+
+.pokemon-containe > .pokemon-card {
+    transform: rotateY(180deg);
+}
+
+.pokemon-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-self: center;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    gap: 3rem;
+    width: 90%;
+    margin: 0 auto;
+    padding-top: 5rem;
+}
+
+.pokemon-card p {
+    color: #EEE;
+}
+.front,
+.back { 
+    backface-visibility: hidden;
+    border-radius: 0.5rem;
+}
+
+.front {
+    height: 80%;
+}
+.back {
+    /* background-image: url("../../public/newaset/pokemonCardBack.jpg"); */
+    transform: rotateY(180deg);
+    height: 100%;
+}
