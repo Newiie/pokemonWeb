@@ -1,6 +1,7 @@
 import './GameScore.css'
+import PropTypes from 'prop-types';
 
-export default function GameScore() {
+export default function GameScore({ length }) {
     return (
         <div className="gamescore">
             <p>PokeMemo</p>
@@ -8,7 +9,11 @@ export default function GameScore() {
                 <p>SCORE: 0</p>
                 <p>HIGH SCORE: 0</p>
             </div>
-            <p>0/15</p>
+            <p>0/{length}</p>
         </div>
     )
 }
+
+GameScore.propTypes = {
+    length: PropTypes.number
+};

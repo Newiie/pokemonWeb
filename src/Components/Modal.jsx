@@ -1,5 +1,6 @@
 import { useState } from "react";
 import cx from 'classnames';
+import { Link } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
 function Modal({ handleSetDifficulty }) {
@@ -38,7 +39,7 @@ function Modal({ handleSetDifficulty }) {
           </p>
         </li>
       </ul>
-      <h2 className="c-pointer" onClick={() => handleSetDifficulty(activeDifficulty)}>Start Game</h2>
+      <Link to="game" className="c-pointer" onClick={() => handleSetDifficulty(activeDifficulty)}>Start Game</Link>
       <h2>Github Repo</h2>
     </div>
   );

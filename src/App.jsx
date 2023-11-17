@@ -8,7 +8,8 @@ function App() {
   const [show, setShow] = useState(true);
   const [difficulty, setDifficulty] = useState("");
   const [PokemonArray, setPokemon] = useState([]);
-
+  const [length, setLength] = useState(0);
+  
   const handleSetDifficulty = (diff) => {
     console.log("difficulty", diff);
     setDifficulty(diff);
@@ -20,17 +21,20 @@ function App() {
       try {
         const data = await fetch("https://pokeapi.co/api/v2/pokemon")
         const result = await data.json()
-        let length = 0
+        let len = 0;
 
         if (difficulty == "easy") {
-          length = 7
+          setLength(7);
+          len = 7;
         } else if (difficulty == "medium") {
-          length = 12
+          setLength(12);
+          len = 12;
         } else {
-          length = 18
+          setLength(18);
+          len = 18;
         }
 
-        setPokemon(result.results.slice(0, length))
+        setPokemon(result.results.slice(0, len))
       } catch (error) {
         console.log("Error fetching data due: ", error)
       }
@@ -43,7 +47,7 @@ function App() {
   return (
     <div className="frontImage">
       {
-        !show && <GameScore/>
+        !show && <GameScore length={length}  />
       }
       {
         show && <Modal  handleSetDifficulty={handleSetDifficulty}/>
