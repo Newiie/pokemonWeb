@@ -1,4 +1,4 @@
-import React, {  useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import {usePokemon} from '../hooks/PokemonProvider'
 import Pokemon from '../Components/Pokemon';
 import GameScore from '../Components/GameScore';
@@ -21,16 +21,13 @@ const Game = () => {
                 let len = 0;
 
                 if (difficulty == "easy") {
-                setLength(7);
-                len = 7;
+                    len = 7;    
                 } else if (difficulty == "medium") {
-                setLength(12);
-                len = 12;
+                    len = 12;   
                 } else {
-                setLength(18);
-                len = 18;
+                    len = 18;   
                 }
-
+                setLength(len);
                 setPokemon(result.results.slice(0, len))
             } catch (error) {
                 console.log("Error fetching data due: ", error)

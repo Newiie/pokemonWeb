@@ -1,9 +1,16 @@
 import { useEffect, useState } from "react"
 import './Pokemon.css'
+import PropTypes from 'prop-types'
+import { usePokemon } from "../hooks/PokemonProvider"
+
 
 function PokemonList({PokemonArray}) {
+    const { score, setScore } = usePokemon();
+
     const [pokePic, setPokePic] = useState({})
     const [isLoading, setIsLoading] = useState(true)
+    const [clickedPokemon, setClickedPokemon] = useState([])
+
     const pointPokemon = {}
 
     useEffect(() => {
@@ -22,11 +29,7 @@ function PokemonList({PokemonArray}) {
             }
         }
         fetchImage()
-    }, [PokemonArray, pokePic])
-
-
-
-    console.log(pokePic)
+    }, [PokemonArray])
 
     useEffect(() => {
         setTimeout(() => {
@@ -40,12 +43,24 @@ function PokemonList({PokemonArray}) {
         )
     }
     
+
+    const handleCardClick = (e) => {
+        if (clickedPokemon.includes(e)) {
+            console.log("Already Clicked")
+            return;
+        }
+        setScore((score) => score + 1)
+        console.log(score);
+        setClickedPokemon(prevClickedPokemon => [...prevClickedPokemon, e]);
+        console.log("Clicked Pokemon:", e);
+    }
+
     return (
         <>
             {!isLoading && <ul className="pokemon-container">
                 {
                     PokemonArray.map(poke => {
-                        return <li className="pokemon-card" key={poke.name}>
+                        return <li className="pokemon-card" key={poke.name} onClick={() => handleCardClick(poke.name)}>
                             <img className="front" src={pokePic[poke.name]}/>
                             <img className="back" src="../../public/newaset/pokemonCardBack.jpg" alt="" />
                             <p>{poke.name}</p>
@@ -64,4 +79,12 @@ export default function Pokemon({PokemonArray}) {
              <PokemonList  PokemonArray={PokemonArray} />
         </div>
     )
+}
+
+Pokemon.propTypes = {
+    PokemonArray: PropTypes.array
+}
+
+PokemonList.propTypes = {
+    PokemonArray: PropTypes.array
 }

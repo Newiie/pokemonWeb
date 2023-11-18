@@ -1,4 +1,5 @@
-import React, { createContext, useState, useContext } from 'react';
+import { createContext, useState, useContext } from 'react';
+import PropTypes from 'prop-types'
 
 const PokemonContext = createContext();
 
@@ -15,6 +16,7 @@ const PokemonProvider = ({ children }) => {
   const [difficulty, setDifficulty] = useState("");
   const [PokemonArray, setPokemon] = useState([]);
   const [length, setLength] = useState(0);
+  const [score, setScore] = useState(0);
 
   console.log(PokemonArray)
   
@@ -27,6 +29,8 @@ const PokemonProvider = ({ children }) => {
     difficulty,
     PokemonArray,
     length,
+    score,
+    setScore,
     setPokemon,
     setLength,
     setDifficulty,
@@ -41,3 +45,8 @@ const PokemonProvider = ({ children }) => {
 };
 
 export default PokemonProvider;  
+
+
+PokemonProvider.propTypes = {
+  children: PropTypes.element
+}
