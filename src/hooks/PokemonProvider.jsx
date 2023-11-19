@@ -17,8 +17,9 @@ const PokemonProvider = ({ children }) => {
   const [PokemonArray, setPokemon] = useState([]);
   const [length, setLength] = useState(0);
   const [score, setScore] = useState(0);
+  const [gameCard, setGameCard] = useState(false);
 
-  console.log(PokemonArray)
+  console.log("PokemonArray: ", PokemonArray)
   
   const handleSetDifficulty = (diff) => {
     console.log("difficulty", diff);
@@ -30,6 +31,8 @@ const PokemonProvider = ({ children }) => {
     PokemonArray,
     length,
     score,
+    gameCard,
+    setGameCard,
     setScore,
     setPokemon,
     setLength,

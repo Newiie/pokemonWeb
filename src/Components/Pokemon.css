@@ -20,7 +20,7 @@
     width: 100%;
 } 
 
-.pokemon-containe > .pokemon-card {
+.pokemon-container.flip > .pokemon-card {
     transform: rotateY(180deg);
 }
 
@@ -39,6 +39,7 @@
 .pokemon-card p {
     color: #EEE;
 }
+
 .front,
 .back { 
     backface-visibility: hidden;

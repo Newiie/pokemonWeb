@@ -5,24 +5,38 @@ import { usePokemon } from "../hooks/PokemonProvider"
 
 
 function PokemonList({PokemonArray}) {
-    const { score, setScore } = usePokemon();
+    const { setScore, setPokemon } = usePokemon();
 
     const [pokePic, setPokePic] = useState({})
     const [isLoading, setIsLoading] = useState(true)
     const [clickedPokemon, setClickedPokemon] = useState([])
+    const [isFlipped, setIsFlipped] = useState(false);
 
     const pointPokemon = {}
+
+    // INITIAL
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 2000)
+    }, []);
 
     useEffect(() => {
         const fetchImage = async () => {
             try {
-                const tmpPicDict = {}
+                const tmpPicDict = {}   
                 for (let i = 0; i < PokemonArray.length; i++) {
-                    const data = await fetch("https://pokeapi.co/api/v2/pokemon/" + PokemonArray[i].name)
-                    const result = await data.json()
-                    tmpPicDict[PokemonArray[i].name] = result.sprites.other["official-artwork"]["front_default"]
-                    pointPokemon[PokemonArray[i].name] = 0
+                    if (PokemonArray[i]) {
+                        const data = await fetch(PokemonArray[i].url)
+                        const result = await data.json()
+                        tmpPicDict[PokemonArray[i].name] = result.sprites.other["official-artwork"]["front_default"]
+                        console.log(`INDES ${i}  ${PokemonArray[i].name}`, result.sprites.other["official-artwork"]["front_default"])
+                        pointPokemon[PokemonArray[i].name] = 0
+                    } else {
+                        console.log("UNIDENTIFIED I", i);
+                    }
                 }
+                console.log("TMP", tmpPicDict)
                 setPokePic(tmpPicDict)
             } catch (error) {
                 console.log("Error: ", error)
@@ -31,11 +45,7 @@ function PokemonList({PokemonArray}) {
         fetchImage()
     }, [PokemonArray])
 
-    useEffect(() => {
-        setTimeout(() => {
-            setIsLoading(false);
-        }, 3000)
-    }, []);
+ 
 
     if (isLoading) {
         return (
@@ -50,19 +60,43 @@ function PokemonList({PokemonArray}) {
             return;
         }
         setScore((score) => score + 1)
-        console.log(score);
         setClickedPokemon(prevClickedPokemon => [...prevClickedPokemon, e]);
-        console.log("Clicked Pokemon:", e);
+        const tmpShuffled = shuffleCard();
+        setIsFlipped(true)
+        
+        setTimeout(() => {
+            setPokemon(tmpShuffled)
+        }, 1000)
+
+        setTimeout(() => {
+            setIsFlipped(false)
+        }, 2000);
+        
+    }
+
+    const shuffleCard = () => {
+        const shuffledArray = [...PokemonArray];
+
+        for (let i = shuffledArray.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+        }
+        console.log("SHUFFLED", shuffledArray)
+        return shuffledArray;
     }
 
     return (
         <>
-            {!isLoading && <ul className="pokemon-container">
+            {!isLoading && pokePic.length != 0 &&<ul className={`pokemon-container ${isFlipped ? ' flip' : ''}`}>
                 {
                     PokemonArray.map(poke => {
+                        if (!poke) {
+                            console.log("Empty Poke")
+                            return;
+                        }
                         return <li className="pokemon-card" key={poke.name} onClick={() => handleCardClick(poke.name)}>
                             <img className="front" src={pokePic[poke.name]}/>
-                            <img className="back" src="../../public/newaset/pokemonCardBack.jpg" alt="" />
+                            <img className="back" src="../../newaset/pokemonCardBack.jpg" alt="" />
                             <p>{poke.name}</p>
                         </li>
                     })
