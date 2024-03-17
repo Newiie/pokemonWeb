@@ -18,6 +18,7 @@ const PokemonProvider = ({ children }) => {
   const [length, setLength] = useState(0);
   const [score, setScore] = useState(0);
   const [gameCard, setGameCard] = useState(false);
+  const [lose, setLose] = useState(false)
 
   console.log("PokemonArray: ", PokemonArray)
   
@@ -25,6 +26,13 @@ const PokemonProvider = ({ children }) => {
     console.log("difficulty", diff);
     setDifficulty(diff);
   };
+
+  const handleReset = () => {
+    setLose(false)
+    setScore(0)
+    setDifficulty("")
+    setPokemon([])
+  }
 
   const contextValue = {
     difficulty,
@@ -38,6 +46,9 @@ const PokemonProvider = ({ children }) => {
     setLength,
     setDifficulty,
     handleSetDifficulty,
+    lose,
+    setLose,
+    handleReset
   };
 
   return (

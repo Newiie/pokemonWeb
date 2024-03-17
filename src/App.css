@@ -10,10 +10,12 @@
 }
 
 .modal {
-  display: block;
+  display: flex;
+  flex-direction: column;
   background-color: white;
+  gap: 1rem;
   border-radius: 3px;
-  width: 20rem;
+  width: max-content;
   padding: 1rem;
   font-family: pokeFont;
   border: 2px solid black;
@@ -59,4 +61,19 @@ a {
 
 a:hover {
   font-weight: bold;
+}
+
+.btn {
+  background-color: rgb(22, 143, 143);
+  border: none;
+  padding: 0.5rem 1rem;
+  color: white;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.btn:hover {
+  background-color: rgb(12, 86, 86);
+  color: white;
 }

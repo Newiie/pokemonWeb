@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import {usePokemon} from '../hooks/PokemonProvider'
 import Pokemon from '../Components/Pokemon';
 import GameScore from '../Components/GameScore';
+import GameModal from '../Components/GameModal';
 
 const Game = () => {
     const {
@@ -10,7 +11,8 @@ const Game = () => {
         setPokemon,
         PokemonArray,
         length,
-        score
+        score,
+        lose
     } = usePokemon();
     
     useEffect(() => {
@@ -64,10 +66,15 @@ const Game = () => {
 
     if (score == length) {
         return (
-            <div>GAME IS DONE!</div>
+            <GameModal name={"You Won!"} />
         )
     }
 
+    if (lose) {
+        return (
+            <GameModal name={"You Lost!"} />
+        )
+    }
 
     return (
         <div className="frontImage">

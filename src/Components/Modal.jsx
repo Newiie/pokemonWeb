@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
 function Modal({ handleSetDifficulty }) {
-  const [activeDifficulty, setActiveDifficulty] = useState(""); // State to track the active difficulty 
+  const [activeDifficulty, setActiveDifficulty] = useState(""); 
 
   const handleDifficulty = (diff) => {
-    setActiveDifficulty(diff); // Set the active difficulty
+    setActiveDifficulty(diff); 
   };  
 
   return (

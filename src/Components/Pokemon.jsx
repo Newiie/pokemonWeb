@@ -5,7 +5,7 @@ import { usePokemon } from "../hooks/PokemonProvider"
 
 
 function PokemonList({PokemonArray}) {
-    const { setScore, setPokemon } = usePokemon();
+    const { setScore, setPokemon, setLose } = usePokemon();
 
     const [pokePic, setPokePic] = useState({})
     const [isLoading, setIsLoading] = useState(true)
@@ -57,6 +57,7 @@ function PokemonList({PokemonArray}) {
     const handleCardClick = (e) => {
         if (clickedPokemon.includes(e)) {
             console.log("Already Clicked")
+            setLose(true)
             return;
         }
         setScore((score) => score + 1)
