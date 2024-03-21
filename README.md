@@ -4,3 +4,5 @@ In this game, players can choose from three difficulty levels: easy, medium, and
 
 Get ready to test your memory skills and embark on an exciting journey through the world of Pokemon! Choose your difficulty level and let the games begin!
 
+GameLink: https://pokemonpartial.netlify.app/
+
