@@ -1,8 +1,12 @@
-# PokemonGame
+# Pokemon Memory Card Game with React and PokeAPI
 
-In this game, players can choose from three difficulty levels: easy, medium, and hard. Your task is to remember the locations of the Pokemon cards and match them correctly. But be careful! If you click on the same card twice, you'll lose the game.
+Welcome to the Pokemon Memory Card Game, powered by React and data sourced from PokeAPI!
 
-Get ready to test your memory skills and embark on an exciting journey through the world of Pokemon! Choose your difficulty level and let the games begin!
+Get ready to test your memory skills with this fun and engaging game. Your task is to match pairs of Pokemon cards by flipping them over two at a time. But remember, if you flip the same card twice, you'll lose!
+
+Each card features a unique Pokemon species fetched from the vast PokeAPI database, providing an immersive and exciting gaming experience.
+
+Are you ready to catch 'em all and become a Pokemon Memory Master? Let's play!
 
 GameLink: https://pokemonpartial.netlify.app/
 
